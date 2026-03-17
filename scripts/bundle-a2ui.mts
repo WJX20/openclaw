@@ -72,13 +72,13 @@ const exec = (cmd: string) => execSync(cmd, { stdio: "inherit", cwd: ROOT_DIR })
 
 try {
   // Compile TypeScript
-  exec(`pnpm -s exec tsc -p "${A2UI_RENDERER_DIR}/tsconfig.json"`);
+  exec(`pnpm -s exec tsc -p "${path.join(A2UI_RENDERER_DIR, "tsconfig.json")}"`);
 
   // Bundle
   try {
-    exec(`pnpm -s exec rolldown -c "${A2UI_APP_DIR}/rolldown.config.mjs"`);
+    exec(`pnpm -s exec rolldown -c "${path.join(A2UI_APP_DIR, "rolldown.config.mjs")}"`);
   } catch {
-    exec(`pnpm -s dlx rolldown -c "${A2UI_APP_DIR}/rolldown.config.mjs"`);
+    exec(`pnpm -s dlx rolldown -c "${path.join(A2UI_APP_DIR, "rolldown.config.mjs")}"`);
   }
 
   // Save hash
